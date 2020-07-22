@@ -5,6 +5,9 @@ import com.mortesubita.domain.dtos.CampeonatoDTO;
 import com.mortesubita.domain.dtos.ClubeDTO;
 import com.mortesubita.domain.dtos.ClubePostDTO;
 import com.mortesubita.service.ClubeService;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,16 +19,23 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/clube")
+@ApiOperation(value = "Controla os clubes")
 public class ClubeController {
 
     @Autowired
     private ClubeService clubeService;
 
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Retorna a lista de clubes")
+    })
     @GetMapping
     public ResponseEntity<List<ClubeDTO>> listar(){
         return ResponseEntity.ok(this.clubeService.listarTodosOsClubes());
     }
 
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Cria um clube e adiciona a um campeonato")
+    })
     @PostMapping
     public ResponseEntity<ClubeDTO> salvar(@Valid @RequestBody ClubePostDTO dto){
 
