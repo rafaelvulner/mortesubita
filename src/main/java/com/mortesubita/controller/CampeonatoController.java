@@ -25,6 +25,11 @@ public class CampeonatoController {
         return ResponseEntity.ok(this.campeonatoService.listarCampeonatosComClubes());
     }
 
+    @GetMapping("/teste")
+    public String teste(){
+        return "Is Alive";
+    }
+
     @GetMapping("/semclubes")
     public ResponseEntity<List<CampeonatoSemClubesDTO>> listarCampeonatosSemClubes(){
         return ResponseEntity.ok(this.campeonatoService.listarCampeonatosSemClubes());
