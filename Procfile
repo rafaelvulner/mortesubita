@@ -1,1 +1,1 @@
-web: java -jar -Dserver.port=$PORT target/morteSubita-0.0.1-SNAPSHOT.war
+web java -Dserver.port=$PORT -jar target/mortesubita-0.0.1-SNAPSHOT.jar
