@@ -13,12 +13,18 @@ public class CampeonatoDTO {
 
     private String nome;
 
+    private Integer ano;
+
+    private String nacionalidade;
+
     private List<ClubeDTO> clubes;
 
     public CampeonatoDTO(Campeonato campeonato) {
         this.id = campeonato.getId();
         this.nome = campeonato.getNome();
         this.clubes = (campeonato.getClubes() != null ? parseClubeParaDTO(campeonato) : null);
+        this.ano = campeonato.getAno();
+        this.nacionalidade = campeonato.getNacionalidade();
     }
 
     public CampeonatoDTO(){}

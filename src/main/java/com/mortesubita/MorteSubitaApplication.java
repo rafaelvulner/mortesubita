@@ -42,6 +42,8 @@ public class MorteSubitaApplication implements CommandLineRunner {
 		brasileiro.setId(1);
 		brasileiro.setNome("Brasileirão 2020");
 		brasileiro.setClubes(Arrays.asList(cor, pal));
+		brasileiro.setAno(2020);
+		brasileiro.setNacionalidade("Brasileira");
 
 		this.campeonatoRepository.save(brasileiro);
 		Campeonato champions = new Campeonato();
@@ -58,6 +60,8 @@ public class MorteSubitaApplication implements CommandLineRunner {
 		champions.setId(2);
 		champions.setNome("Champions league");
 		champions.setClubes(Arrays.asList(barca, real));
+		champions.setAno(2020);
+		champions.setNacionalidade("Europeia");
 
 		this.campeonatoRepository.save(champions);
 
