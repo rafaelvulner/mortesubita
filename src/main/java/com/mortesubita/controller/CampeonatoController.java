@@ -19,6 +19,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/campeonato")
 @ApiOperation(value = "Controla os campeonatos")
+@CrossOrigin("*")
 public class CampeonatoController {
 
     @Autowired
