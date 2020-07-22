@@ -1,0 +1,21 @@
+{
+  "id": "rafaelvulner",
+  "api": {
+    "config_vars_prefix": "RAFAELVULNER",
+    "config_vars": [
+      "RAFAELVULNER_URL"
+    ],
+    "password": "yGdbI57w7Ywti1B6ImvP6eJ3XjjQJEGP",
+    "sso_salt": "I5YnavvndbZFAn4pitIgv4zzK0ACcVs1",
+    "regions": [
+      "us"
+    ],
+    "requires": [],
+    "production": {
+      "base_url": "https://myaddon.com/heroku/resources",
+      "sso_url": "https://myaddon.com/sso/login"
+    },
+    "version": "3"
+  },
+  "name": "mortesubita"
+}
