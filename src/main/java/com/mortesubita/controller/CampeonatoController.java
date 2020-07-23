@@ -1,6 +1,7 @@
 package com.mortesubita.controller;
 
 import com.mortesubita.domain.Campeonato;
+import com.mortesubita.domain.Response;
 import com.mortesubita.domain.dtos.AdicionarClubeDTO;
 import com.mortesubita.domain.dtos.CampeonatoDTO;
 import com.mortesubita.domain.dtos.CampeonatoSemClubesDTO;
@@ -42,8 +43,11 @@ public class CampeonatoController {
             @ApiResponse(code = 200, message = "Retorna a lista de campeonatos sem os clubes")
     })
     @GetMapping("/semclubes")
-    public ResponseEntity<List<CampeonatoSemClubesDTO>> listarCampeonatosSemClubes(){
-        return ResponseEntity.ok(this.campeonatoService.listarCampeonatosSemClubes());
+    public ResponseEntity<Response<List<CampeonatoSemClubesDTO>>> listarCampeonatosSemClubes(){
+        Response<List<CampeonatoSemClubesDTO>> resp = new Response<>();
+
+        resp.setData(this.campeonatoService.listarCampeonatosSemClubes());
+        return ResponseEntity.ok(resp);
     }
 
     @ApiResponses(value = {
