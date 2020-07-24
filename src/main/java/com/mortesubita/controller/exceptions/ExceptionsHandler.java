@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
-public class ControllerExceptions {
+public class ExceptionsHandler {
 
     @ExceptionHandler(CampeonatoNotFound.class)
     public ResponseEntity<?> CampeonatoNotFound(CampeonatoNotFound campeonatoNotFound){
@@ -18,5 +18,11 @@ public class ControllerExceptions {
     public ResponseEntity<?> clubeJaExiste(ClubeJaExisteNotFound clubeJaExisteNotFound){
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(clubeJaExisteNotFound.getMessage());
+    }
+
+    @ExceptionHandler(ClubeNaoPodeSerDeletadoException.class)
+    public ResponseEntity<?> clubeNaoPodeSerDeletadoException(ClubeNaoPodeSerDeletadoException clubeNaoPodeSerDeletadoException){
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(clubeNaoPodeSerDeletadoException.getMessage());
     }
 }

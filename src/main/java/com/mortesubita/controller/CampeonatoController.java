@@ -26,17 +26,18 @@ public class CampeonatoController {
     @Autowired
     private CampeonatoService campeonatoService;
 
+    @Autowired
+    private Response response;
+
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Retorna a lista de campeonatos com todos os clubes vinculados")
     })
     @GetMapping
-    public ResponseEntity<List<CampeonatoDTO>> listarCampeonatos(){
-        return ResponseEntity.ok(this.campeonatoService.listarCampeonatosComClubes());
-    }
+    public ResponseEntity<Response<CampeonatoDTO>> listarCampeonatos(){
 
-    @GetMapping("/teste")
-    public String teste(){
-        return "Is Alive";
+
+        this.response.setData(this.campeonatoService.listarCampeonatosComClubes());
+        return ResponseEntity.ok(this.response);
     }
 
     @ApiResponses(value = {
@@ -65,5 +66,11 @@ public class CampeonatoController {
 
         return ResponseEntity.created(uri).build();
 
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletarCampeonato(@PathVariable("id") Integer id){
+        this.campeonatoService.deletarCampeonato(id);
+        return ResponseEntity.noContent().build();
     }
 }

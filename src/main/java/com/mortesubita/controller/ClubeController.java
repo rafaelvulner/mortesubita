@@ -1,6 +1,7 @@
 package com.mortesubita.controller;
 
 import com.mortesubita.domain.Clube;
+import com.mortesubita.domain.Response;
 import com.mortesubita.domain.dtos.CampeonatoDTO;
 import com.mortesubita.domain.dtos.ClubeDTO;
 import com.mortesubita.domain.dtos.ClubePostDTO;
@@ -20,17 +21,22 @@ import java.util.List;
 @RestController
 @RequestMapping("/clube")
 @ApiOperation(value = "Controla os clubes")
+@CrossOrigin("*")
 public class ClubeController {
 
     @Autowired
     private ClubeService clubeService;
 
+    @Autowired
+    private Response response;
+
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Retorna a lista de clubes")
     })
     @GetMapping
-    public ResponseEntity<List<ClubeDTO>> listar(){
-        return ResponseEntity.ok(this.clubeService.listarTodosOsClubes());
+    public ResponseEntity<Response<List<ClubeDTO>>> listar(){
+        response.setData(this.clubeService.listarTodosOsClubes());
+        return ResponseEntity.ok(this.response);
     }
 
     @ApiResponses(value = {
@@ -48,5 +54,11 @@ public class ClubeController {
 
         return ResponseEntity.created(uri).build();
 
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletarClube(@PathVariable("id") Integer id){
+        this.clubeService.deletarCampeonato(id);
+        return ResponseEntity.noContent().build();
     }
 }

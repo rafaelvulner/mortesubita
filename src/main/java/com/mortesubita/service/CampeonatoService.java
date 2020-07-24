@@ -34,4 +34,9 @@ public class CampeonatoService {
 
     }
 
+
+    public void deletarCampeonato(Integer id){
+        this.campeonatoRepository.deleteById(id);
+    }
+
 }
