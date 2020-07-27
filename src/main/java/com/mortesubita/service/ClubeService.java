@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -31,6 +32,13 @@ public class ClubeService {
 
     public List<ClubeDTO> listarTodosOsClubes(){
         return this.clubeRepository.findAll().stream().map(a-> new ClubeDTO(a)).collect(Collectors.toList());
+    }
+
+    public List<ClubeDTO> listarClubesDeUmCampeonato(Integer id){
+        Optional<Campeonato> campeonato = this.campeonatoRepository.findById(id);
+        List<ClubeDTO> clubes = campeonato.get().getClubes().stream().map(camp -> new ClubeDTO(camp)).collect(Collectors.toList());
+        return clubes;
+
     }
 
     public ClubeDTO adicionarClube(ClubePostDTO dto){

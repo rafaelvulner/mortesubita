@@ -1,10 +1,12 @@
 package com.mortesubita.controller;
 
 import com.mortesubita.domain.Campeonato;
+import com.mortesubita.domain.Clube;
 import com.mortesubita.domain.Response;
 import com.mortesubita.domain.dtos.AdicionarClubeDTO;
 import com.mortesubita.domain.dtos.CampeonatoDTO;
 import com.mortesubita.domain.dtos.CampeonatoSemClubesDTO;
+import com.mortesubita.domain.dtos.ClubeDTO;
 import com.mortesubita.service.CampeonatoService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -72,5 +74,12 @@ public class CampeonatoController {
     public ResponseEntity<Void> deletarCampeonato(@PathVariable("id") Integer id){
         this.campeonatoService.deletarCampeonato(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<CampeonatoDTO> salvar(@PathVariable("id") Integer id, @RequestBody List<ClubeDTO> dto){
+
+        return ResponseEntity.ok(this.campeonatoService.removerClubeDoCampeonato(id, dto));
+
     }
 }

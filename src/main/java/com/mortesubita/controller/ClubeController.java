@@ -39,6 +39,12 @@ public class ClubeController {
         return ResponseEntity.ok(this.response);
     }
 
+    @GetMapping("/campeonato/{id}")
+    public ResponseEntity<Response<List<ClubeDTO>>> listarClubesDeUmCampeonato(@PathVariable("id") Integer id){
+        response.setData(this.clubeService.listarClubesDeUmCampeonato(id));
+        return ResponseEntity.ok(this.response);
+    }
+
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Cria um clube e adiciona a um campeonato")
     })
